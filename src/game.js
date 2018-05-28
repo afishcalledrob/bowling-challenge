@@ -6,14 +6,23 @@ const DEFAULT_BALL_NUMBER = 1;
 var Game = function() {
   this.frameNumber = DEFAULT_FRAME_NUMBER;
   this.ballNumber = DEFAULT_BALL_NUMBER;
+  this.gameComplete = false
+};
+
+Game.prototype.frameIncrementer = function() {
+  if (this.ballNumber > MAX_BALL_NUMBER){
+    this.frameNumber += 1;
+  };
+};
+
+Game.prototype.ballReseter = function() {
+  if (this.ballNumber > MAX_BALL_NUMBER){
+    this.ballNumber = DEFAULT_BALL_NUMBER;
+  };
 };
 
 Game.prototype.playBall = function() {
   this.ballNumber += 1;
-  if (this.ballNumber > MAX_BALL_NUMBER){
-    this.frameNumber += 1;
-  };
-  if (this.ballNumber > MAX_BALL_NUMBER){
-    this.ballNumber = DEFAULT_BALL_NUMBER;
-  };
+  this.frameIncrementer();
+  this.ballReseter();
 };
